@@ -1,0 +1,51 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block content %}
+   
+
+ <main id="edit-profile">
+    <div class="edit-profile__container">
+        <header class="edit-profile__header">
+            <div class="edit-profile__avatar-container">
+                
+                {% if messages %}
+                {% for message in messages %}
+                <h2 class="edit-profile__username">{{message}}</h2>
+                {% endfor %}
+                {% endif %}
+
+
+                {% if request.user.picture %}
+                <img src="{{ user.picture.url }}"  class="edit-profile__avatar" />
+                {% else %}
+                <img src="{% static 'core/images/user.jpg'%}" class="edit-profile__avatar"  />
+                {% endif %}
+            </div>
+           
+
+            <h4 class="edit-profile__username">{{ user.username }}</h4>
+        </header>
+
+        <form enctype="multipart/form-data" method="post">
+            {% csrf_token%}
+            {% for field in form %}
+            <div class="form__row">
+                <label for="{{ field.auto_id }}" class="form__label">{{ field.label }}</label>
+                {{ field }}
+            
+                {% comment %} <small> {{ field.help_text }}</small> {% endcomment %}
+                <div class="err-text">
+                {{ field.errors }}
+                </div>
+            </div>
+
+            {% endfor %}
+            <input type="submit" value="Submit">
+           
+        </form>
+       
+    </div>
+</main>
+
+{% endblock content %}

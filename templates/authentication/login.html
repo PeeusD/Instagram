@@ -1,0 +1,74 @@
+
+{% extends 'authentication/base.html' %}
+{% load static %}
+{% block title %}Instagram | Login{% endblock title %} 
+{% block content %}
+<div class="container">
+
+
+    <main id="login">
+        <div class="login__column">
+            <img src="{% static 'authentication/img/phoneImage.png'%}" class="login__phone" />
+        </div>
+        <div class="login__column">
+            <div class="login__box">
+                <img src="{% static 'authentication/img/loginLogo.png' %}" class="login__logo" />
+                
+                        {% if messages  %}
+                        {% for message in messages %}
+                        <div class="err_msg">{{message}}</div>
+                        {% endfor %} {% endif %}
+
+                <form action="" method="post"  class="login__form">
+                    {% csrf_token %}
+                    <input type="text" name="email_username" autocomplete="section-blue" placeholder="Email or Username" required />
+                    <input type="password" name="password" autocomplete="section-blue" placeholder="Password" required />
+                    <input type="submit" value="Log in" />
+                </form>
+                <span class="login__divider">or</span>
+               
+                <a href="/accounts/google/login/?process=login" class="login__glink">
+                    <i class='fab fa-google'></i>
+                    Login with Google
+                </a>
+                {% comment %} <a href="/" class="login__gitlink">
+                    <i class="fab fa-github"></i>
+                    Login with Github
+                </a> {% endcomment %}
+                <a href="{% url 'password_reset' %}" class="login__link login__link--small">Forgot password</a>
+            </div>
+            <div class="login__box">
+                <span>Don't have an account?</span> <a href="{% url 'sign_up' %}">Sign up</a>
+            </div>
+            <div class="login__box--transparent">
+                <span>Get the app.</span>
+                <div class="login__appstores">
+                    <a href="https://apps.apple.com/us/app/instagram/id389801252">
+                        <img src="{% static 'authentication/img/ios.png' %}" class="login__appstore" alt="Apple appstore logo" title="Apple appstore" /> </a>
+                   <a href="https://play.google.com/store/apps/details?id=com.instagram.android">
+                        <img src="{% static 'authentication/img/android.png' %}" class="login__appstore" alt="Android appstore logo" title="Android appstore" /></a>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+
+    
+    <br>
+        <center>
+
+            AdminEmail-->admin1@admin.com-----AdminPasscode-->admin1 <br>
+            Email-->newuser123@gmail.com--------Passcode-->kuchbhikar012
+
+            <br>
+            Email-->peeustest1@gmail.com-- Username-->peeustest1------Passcode-->ilovemywork0123
+            <br>-Email--user1@gmail.com--Passcode--ilovemywork36
+            <br>
+           USERNAME--- givoma3438@zneep.com--or -sonal123---PASSCODE--geekyshows456
+            
+    
+        </center>
+
+</div>
+{% endblock content %}

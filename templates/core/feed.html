@@ -1,0 +1,200 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block profile_home_btn %}
+
+  <li><a class="dropdown-item" href="{% url 'profile_view' request.user.username %}"><i class="fas fa-user fa-lg"></i> Profile</a></li>
+  {% endblock profile_home_btn %}
+
+{% block content %}
+
+
+    <main id="profile">
+    <!-- User profile navbar-->
+    <header class="profile__header">
+      <div class="profile__column">
+        {% if user.picture %}
+          <img src="{{request.user.picture.url}}" />
+          {% else %}
+          <img src="{% static 'core/images/user.jpg' %}" />
+          {% endif %}
+      </div>
+      <div class="profile__column">
+          <div class="profile__title">
+              <h3 class="profile__username">{{request.user.username}}</h3>
+          
+          </div>
+          <ul class="profile__stats">
+              <li class="profile__stat">
+                  <span class="stat__number">{{ request.user.posts_count }}</span> posts
+              </li>
+              <li class="profile__stat">
+                  <span class="stat__number">{{ request.user.follower_count }} </span> followers
+              </li>
+              <li class="profile__stat">
+                  <span class="stat__number">{{ request.user.following_count }} </span> following
+              </li>
+          </ul>
+          <p class="profile__bio">
+              <span class="profile__full-name">
+                {{user.full_name}}  <br />
+              </span>{% if user.bio %}{{user.bio}}{% endif %}
+              <a href="#">{% if user.website %}{{user.website}}{% endif %}</a>
+          </p>
+      </div>
+  </header>
+    <!--user Profile navbar ends-->
+
+</main>
+
+
+
+    <main id="feed">
+      {% if messages %}
+      {% for message in messages %}
+      {{message}}
+      {% endfor %}
+    {% endif %}
+
+
+       <!--Posting box starts-->  <!--Create Room-->
+   <div class="create-room">
+     
+      <form action="{% url 'post_create_view' %}" method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+
+          {% for field in form %}
+           {{ field }}
+          {% endfor %}
+          <button type="submit" >Save</button>
+      </form>
+      <br>
+      <button type="submit">Create Room</button>
+   </div>
+ <!--Posting box ends-->
+
+    <!--User's post starts-->
+    {% if all_posts %}
+      {% for post in all_posts %}
+    <div class="photo">
+        <header class="photo__header">
+     
+            {% if post.user.picture %}
+            <img src="{{post.user.picture.url}}" class="photo__avatar" />
+          
+            {% else %}
+            <img src="{% static 'core/images/user.jpg' %}" class="photo__avatar" />
+            {% endif %}
+       
+            <div class="photo__user-info">
+                <span class="photo__author">{{ post.user.username }}</span>
+                {% comment %} <span > <a href="{% url 'post_detail_view' post.pk %}"  class="text-decoration-none" >Go to post</a></span>
+                 {% endcomment %}
+            </div>
+        </header>
+        <img src="{{post.image.url}}" />
+                {% if post.text %}
+                <span class="photo__text">{{post.text}} </span>
+                {% endif %}
+        <div class="photo__info">
+            <div class="photo__actions">
+                    <span class="photo__action-like">
+                  
+                      <form action="" method="POST">
+                      {% csrf_token %}
+                      <i class="far fa-heart fa-lg" data-sid="{{post.id}}"></i>
+                      </form>
+                  
+                  </span>
+                <span class="photo__action-comment">
+                  <i class="far fa-comment fa-lg"></i>
+                </span>
+                <span class="photo__action-save">
+                  <form action="" method="POST">
+                    {% csrf_token %}
+                  <i class="far fa-bookmark fa-lg" data-sid="{{post.id}}"></i>
+                </form>
+                </span>
+            </div>
+
+            <div class="photo__actions">
+              <span class="photo__likes" id="photo__likes{{post.id}}">
+                {{post.likes_count}} likes
+              </span>
+                <span class="photo__likes">
+                {{post.comments_count}} comments 
+                 
+              </span>
+             
+          </div>
+
+          <ul class="photo__comments">
+           <!-- Trigger/Open The Modal -->
+           <span class="seeComments" data-sid="{{post.id}}" ><i class="fas fa-eye"></i> Comments</span>
+          </ul>
+
+         
+                              <!-- The Modal -->
+                              <div id="myModal{{post.id}}" class="modal">
+              
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                  <span class="closeModal" data-sid="{{post.id}}">&times;</span>
+                                  <img src="{{post.image.url}}" />
+                                  
+
+                                  <div class="photo__actions">
+                                    <span class="photo__likes">
+                                      <i class="far fa-heart fa-lg"></i>
+                                      {{post.likes_count}} likes
+                                    </span>
+
+                                      <span class="photo__likes">
+                                        <i class="far fa-comment fa-lg"></i>
+                                      {{post.comments_count}} comments 
+                                       
+                                    </span>
+                                  </div>
+
+
+                                  <!--Users Comments Here-->
+                                  <li class="photo__comment" id="post_{{post.id}}">
+                                    <!--Appending user commetns here using jquery-->
+                                   
+                                </li>
+                                   
+                                  <!--Comment box-->
+                                  <form action="" method="post">
+                                <div class="photo__add-comment-container">
+                                 
+                                  {% csrf_token %}
+                                  <textarea name="comment" class="txtbox" placeholder="Add a comment..." style="resize:none"></textarea>
+                                  <span class="send-cmt" data-sid="{{post.id}}" style="cursor: pointer;"> SEND </span>
+                                  <i class="fa fa-ellipsis-h fa-xs"></i>
+                               
+                                </div>
+                                 </form>
+
+                                </div>
+              
+                              </div>
+                           <!--Modal Ends-->
+                      <span class="photo__time-ago"><i class="far fa-clock fa-lg"></i> POSTED ON {{ post.updated_on }}</span>
+
+        </div>
+    </div>
+
+    {% endfor %}
+      {% else %}
+      No post exists!
+      {% endif %}
+
+  <!--User's post ends-->
+
+
+
+</main>
+  <!-- /.container -->
+  
+  {% endblock content %}

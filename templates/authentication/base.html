@@ -1,0 +1,71 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'core/images/instalogo.png' %}">
+
+    <title> {% block title %} Instagram {% endblock title %}</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
+  <link href="{% static 'core/css/styles.css' %}" rel="stylesheet">
+  {% comment %} <link href="{% static 'authentication/css/login.css' %}" rel="stylesheet"> {% endcomment %}
+</head>
+
+<body>
+<!--Body content-->
+
+
+{% block content %}
+{% endblock content %}
+
+
+
+
+
+<div class="signature"><center>  Made with ❤️</i> By PeeusD.  &copy; 2021-2022 </center> </div>
+<!--Footer-->
+<footer class="footer">
+    <div class="footer__column">
+        <nav class="footer__nav">
+            <ul class="footer__list">
+                <li class="footer__list-item"><a href="/feed" class="footer__link">About Us</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Support</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Blog</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Press</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Api</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Jobs</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Privacy</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Terms</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Directory</a></li>
+                <li class="footer__list-item"><a href="/feed" class="footer__link">Language</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="footer__column">
+        <span class="footer__copyright">© 2022 India</span>
+    </div>
+  </footer>
+  
+
+
+
+    <!-- core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="{% static 'authentication/js/jquery.js' %}"></script>
+    <script src="{% static 'authentication/js/core.js' %}"></script>
+
+
+</body>
+
+</html>
+

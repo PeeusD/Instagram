@@ -1,0 +1,114 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+  <main role="main">
+
+      
+    <main id="profile">
+      <!-- User profile navbar-->
+      <header class="profile__header">
+        <div class="profile__column">
+          {% if user.picture %}
+            <img src="{{user.picture.url}}" />
+            {% else %}
+            <img src="{% static 'core/images/user.jpg' %}" />
+            {% endif %}
+        </div>
+        <div class="profile__column">
+            <div class="profile__title">
+                <h3 class="profile__username">{{user.username}}</h3>
+                <ul>
+
+                  {% if not is_follows_this_user %}
+                  <li>
+                    <form method="POST" action="{% url 'follow_done_view' %}">
+                      {% csrf_token %}
+                      <input type="number" name="followed_user_id" hidden value="{{ user.pk }}">
+                      <button class="btn btn-info mx-3" type="submit"> Follow </button>
+                    </form>
+                  </li>
+    
+                  {% else %}
+    
+                  <li>
+                    <form method="POST" action="{% url 'unfollow_done_view' %}">
+                      {% csrf_token %}
+                      <input type="number" name="unfollowed_user_id" hidden value="{{ user.pk }}">
+                      <button class="btn btn-danger mx-3" type="submit"> Unfollow </button>
+                    </form>
+                  </li>
+                  {% endif %}
+
+                  
+                </ul>
+            </div>
+
+            <ul class="profile__stats">
+                <li class="profile__stat">
+                    <span class="stat__number">{{ user.posts_count }}</span> posts
+                </li>
+                <li class="profile__stat">
+                    <span class="stat__number">{{ user.follower_count }} </span> followers
+                </li>
+                <li class="profile__stat">
+                    <span class="stat__number">{{ user.following_count }} </span> following
+                </li>
+            </ul>
+            <p class="profile__bio">
+                <span class="profile__full-name">
+                  {{user.full_name}}  <br />
+                </span>{% if user.bio %}{{user.bio}}{% endif %}
+                <a href="#">{% if user.website %}{{user.website}}{% endif %}</a>
+            </p>
+        </div>
+    </header>
+      <!--user Profile navbar ends-->
+
+
+      <!--All Anonymous User's Post starts-->
+      <ul>
+       
+        <div class="explorer__post">
+          
+          <li> 
+           
+                {% if user.posts_count != 0 %}
+                <div class="profile__title">
+                  <h3 class="profile__username">{{user.username}}'s Post (AnonymousUser)</h3>
+                </div>
+                {% for post in user.post_set.all %}
+            <div class="card">
+             <img src="{{post.image.url}}"  alt="user_post">
+             
+              <div class="text-block">
+                <h2> <i class="fas fa-heart fa-sm "></i> {{post.likes_count}}
+                   <i class="fas fa-comment fa-sm "></i> {{post.comments_count}}</h2>
+                
+              </div>
+            </div>
+
+            {% endfor %}
+            {% else %}
+
+            <div class="text-block">
+              No post exists!
+            </div>
+
+            {% endif %}
+
+  
+          </li>
+
+        </div>
+       
+      </ul>
+
+  
+  </main>
+  
+  </main><!-- /.container -->
+
+{% endblock content %}

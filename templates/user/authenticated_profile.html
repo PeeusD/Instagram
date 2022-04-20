@@ -1,0 +1,106 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<main id="main">
+  <main id="profile">
+    <!-- User profile navbar-->
+    <header class="profile__header">
+      <div class="profile__column">
+        {% if user.picture %}
+          <img src="{{request.user.picture.url}}" />
+          {% else %}
+          <img src="{% static 'core/images/user.jpg' %}" />
+          {% endif %}
+      </div>
+      <div class="profile__column">
+          <div class="profile__title">
+              <h3 class="profile__username">{{request.user.username}}</h3>
+              <a href="{% url 'profile_edit_view' request.user.username %}"><i class="fa fa-edit"></i> Edit profile</a>
+              <a href="{% url 'password_change_view' %}"><i class="fas fa-cog fa-lg"></i> Change Password</a>
+         
+            
+          </div>
+          <ul class="profile__stats">
+              <li class="profile__stat">
+                  <span class="stat__number">{{ request.user.posts_count }}</span> posts
+              </li>
+              <li class="profile__stat">
+                  <span class="stat__number">{{ request.user.follower_count }} </span> followers
+              </li>
+              <li class="profile__stat">
+                  <span class="stat__number">{{ request.user.following_count }} </span> following
+              </li>
+          </ul>
+          <p class="profile__bio">
+              <span class="profile__full-name">
+                {{user.full_name}}  <br />
+              </span>{% if user.bio %}{{user.bio}}{% endif %}
+              <a href="#">{% if user.website %}{{user.website}}{% endif %}</a>
+          </p>
+      </div>
+    </header>
+ 
+    <!--user Profile navbar ends-->
+      <!--All User Post starts-->
+      <ul>
+        <div class="explorer__post">
+          <li>
+            {% if request.user.posts_count != 0 %}
+              <div class="profile__title">
+                <h3 class="profile__username">{{request.user.username}}'s Post (Logged in user)</h3>
+              </div>
+            {% for post in request.user.post_set.all %}
+            <div class="card">
+             <img src="{{post.image.url}}"  alt="user_post"> 
+             
+              <div class="text-block">
+                <h2> <i class="fas fa-heart fa-sm "></i> {{post.likes_count}}
+                   <i class="fas fa-comment fa-sm "></i> {{post.comments_count}}
+                   <i class="fas fa-trash fa-sm"  data-sid="{{ post.id }}"></i>
+                  </h2>
+              </div>
+                <!--Modal starts-->
+                  <div id="myModal{{post.id}}" class="modal">
+                    <div class="modal-content">
+                      <h6 > Do you really wanna delete your post?</h6>
+                     
+                          <form action="{% url 'post_delete_view' post.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="reset" class="no-btn" data-sid="{{post.id}}">No</button>
+                            <button type="submit" >Yes</button>
+            
+                          </form>
+                  
+                    </div>
+                  </div>
+                  <!--Modal Ends-->
+                
+
+            </div>
+
+            {% endfor %}
+            {% else %}
+
+            <div class="text-block">
+              No post exists!
+            </div>
+
+            {% endif %}
+
+  
+          </li>
+
+        </div>
+       
+      </ul>
+
+
+    </main>
+
+</main>
+
+
+
+{% endblock content %}

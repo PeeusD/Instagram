@@ -1,0 +1,16 @@
+/* this is CSS INHERITANCE  */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
+
+@import "reset.css";
+@import "variables.css";
+@import "globals.css";
+@import "navigation.css";
+@import "login.css";
+@import "core.css";
+@import "explore-post.css";
+@import "feed.css";
+@import "profile.css";
+@import "profile-srch.css";
+@import "edit-profile.css";
+@import "mobile.css";
+@import "footer.css";

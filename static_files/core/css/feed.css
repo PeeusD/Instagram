@@ -1,0 +1,211 @@
+#feed {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+ 
+}
+
+#feed .photo {
+  background-color: var(--background-color);
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 50px;
+  box-shadow: 0 3px 15px rgb(175, 174, 174);
+}
+#feed .create-room {
+  background-color: var(--background-color);
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+  box-shadow: 0 3px 15px rgb(175, 174, 174);
+  padding: 40px;
+
+}
+
+.create-room .photo__avatar {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 16px;
+  border: 2.5px solid rgb(204, 48, 126);
+
+}
+.photo .photo__header {
+  padding: 8px;
+  display: flex;
+
+}
+
+
+.photo__header .photo__avatar {
+  width: 35px;
+  border-radius: 50%;
+  margin-right: 16px;
+  border: 2.5px solid rgb(204, 48, 126);
+ 
+}
+
+.photo .photo__user-info .photo__author {
+
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.photo > img {
+  max-width: 100%;
+}
+
+.photo .photo__info {
+  padding: 15px 20px;
+}
+.photo .upload_post{
+  margin-left: 360px;
+  color: rgb(63, 62, 62);
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+.photo__text{
+  margin: 20px;
+  font-weight: 500;
+}
+.photo__actions {
+  margin-bottom: 2px;
+  font-size: 115%;
+  display: flex;
+}
+
+.photo__action-like {
+  
+  margin-left: 5px;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.photo__action-comment {
+  
+  margin-left: 5px;
+  margin-right: 444px;
+}
+.photo__action-save {
+  cursor: pointer;
+  
+}
+.photo__actions  {
+  
+  margin-left: 5px;
+  margin-right: 40px;
+}
+
+
+
+.photo .photo__likes {
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  margin-right: 15px;
+
+}
+
+.photo .photo__comments {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  cursor:pointer;
+  float: right;
+
+}
+
+.photo .photo__add-comment-container {
+  margin-top: 15px;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photo__add-comment-container textarea {
+  width: 90%;
+  border: 0;
+  font-size: 14px;
+  resize: none;
+  height: 20px;
+}
+
+.photo__add-comment-container textarea:focus,
+.photo__add-comment-container textarea:active {
+  outline: none;
+}
+
+.photo__add-comment-container i {
+  cursor: pointer;
+}
+
+.photo .photo__time-ago {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: rgb(145, 142, 142);
+  margin-top: 5px;
+  display: block;
+}
+
+
+.photo__comments .photo__author-username {
+  font-weight: 700;
+}
+.photo__comments .photo__author-comment {
+  font-weight: 500;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /*Black w/ opacity*/
+  
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 10px;
+  /* border: 1px solid #888; */
+  width: 50%; /* Could be more or less, depending on screen size */
+  border-radius: 3px;
+  overflow: hidden;
+
+  
+}
+.modal-content > img{
+  height: 400px;
+  max-width: fit-content;
+ 
+}
+/* The Close Button */
+.closeModal{
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.closeModal:hover,
+.closeModal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

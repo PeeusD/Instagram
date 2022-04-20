@@ -1,0 +1,52 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+  <main id="explore">
+  
+    <ul class="explore__users">
+
+        {% if all_profiles %}
+        {% for user in all_profiles %}
+    
+                <div class="explore__user">
+                    
+                    <div class="explore__user-column">
+                        {% if user.picture %}
+                        <a href="{% url 'profile_view' user.username %}">
+                            <img src="/media/{{user.picture}}" class="explore__avatar"/></a>
+                        {% else %}
+                        <a href="{% url 'profile_view' user.username %}">
+                        <img src="{% static 'core/images/user.jpg' %}" class="explore__avatar"/></a>
+                        {% endif %}
+
+                        <div class="explore__info">
+                            <span class="explore__username">{{user.username}}</span>
+                            <span class="explore__full-name">{{user.full_name}}</span>
+                        </div>
+                    </div>
+                    <div class="explore__user-column">
+                   
+
+                    <!--   <button type="submit">Follow</button>  -->  
+
+
+                    </div>
+                </div> 
+               
+       
+        {% endfor %}
+        {% else %}
+  
+        <h1> <center> No profile found! </center> </h1>
+        {% endif %}
+    </ul>
+  
+
+
+</main>
+    {% endblock content %}
+

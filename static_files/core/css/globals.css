@@ -1,0 +1,29 @@
+body {
+  background-color: var(--background-color);
+  transition: background-color 0.3s;
+  color: var(--text-color);
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+}
+.dark-mode{
+  --background-color: #232332;
+  --fd-blue: #3897f0;
+  --link-color: #003569;
+  --text-color: rgb(201, 196, 196);
+}
+
+main {
+  animation: fadeInMain 0.5s linear;
+  margin-top: 100px;
+}
+
+@keyframes fadeInMain {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

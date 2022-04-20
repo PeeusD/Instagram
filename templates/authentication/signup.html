@@ -1,0 +1,62 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+{% block title %}Instagram | SignUp{% endblock title %} 
+{% block content %}
+
+<div class="container">
+
+    <main id="login">
+        
+        <div class="login__column">
+            <div class="login__box">
+               <a href="/"> <img src="{% static 'authentication/img/loginLogo.png' %}" class="login__logo" /></a>
+                <br>
+                        <span class="msg__info1">Sign up to see photos and videos from your friends. </span><br>
+                        <button class="fb__btn" type="submit" onclick="window.location.href = '/accounts/google/login/?process=login';"><i class="fab fa-google"></i> Login with Google</button>
+                        <span class="login__divider">or</span>
+                <form action="" method="POST"  class="login__form">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                    <div class="err_msg" >
+                            {{ form.non_field_errors }}
+                    </div>
+                    {% endif%}
+                    <input type="email" name="email" autocomplete="section-blue" placeholder="Email" required />
+                    <div class="err_msg" >{{ form.email.errors }}</div>
+                    <input type="text" name="username" autocomplete="section-blue" placeholder="Username" required />
+                    <div class="err_msg" >{{ form.username.errors }}</div>
+                    <input type="text" name="full_name" autocomplete="section-blue" placeholder="Full Name" required />
+                    <div class="err_msg" >{{ form.fullname.errors }}</div>
+                    <input type="password" name="password1" autocomplete="section-blue" placeholder="Password" required />
+                    <div class="err_msg" >{{ form.password1.errors }}</div>
+                    <input type="password" name="password2" autocomplete="section-blue" placeholder="Retype Password" required />
+                    <div class="err_msg" >{{ form.password2.errors }}</div>
+                    <input type="submit" value="Sign Up" />
+                </form>
+
+                <span class="signup__info">By signing up, you agree our  <br> <a  class="" href="">Terms and  Privacy policy</a></span>
+       
+                
+                
+                </div>
+            <div class="login__box">
+                <span>Have an account?</span> <a href="{% url 'log_in' %}">Login</a>
+            </div>
+            <div class="login__box--transparent">
+                <span>Get the app.</span>
+                <div class="login__appstores">
+                    <a href="https://play.google.com/store/apps/details?id=com.instagram.android">
+                    <img src="{% static 'authentication/img/ios.png' %}" class="login__appstore" alt="Apple appstore logo" title="Apple appstore logo" />
+                    <img src="{% static 'authentication/img/android.png' %}" class="login__appstore" alt="Android appstore logo" title="Android appstore logo" /></a>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+{% endblock content%}

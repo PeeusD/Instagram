@@ -1,0 +1,53 @@
+
+  .explorer__post{
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin: 0 80px;
+
+  }
+
+  .explorer__post .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    float: left;
+    margin: 12px;
+    opacity: 75%;
+    position: relative;
+  
+  }
+  .explorer__post img{
+    max-width: 500px;
+    max-height: 350px;
+    /* height: 30vw; */
+
+  }
+   
+  .explorer__post img:hover{
+    transform: scale(1.1);
+    transition: transform .3s;
+
+  }
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    opacity: 100%;
+  }
+  
+  /* like+ comment overlapping... */
+  .text-block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: larger;
+    font-weight: bold;
+  }
+ 
+.fa-trash{
+    cursor: pointer;
+  }
+  .modal-content{
+    padding: 20px;
+  }

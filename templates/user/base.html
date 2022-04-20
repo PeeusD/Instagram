@@ -1,0 +1,160 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="{% static 'core/images/instalogo.png' %}">
+   <!-- fontawesome core CSS -->
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'core/css/styles.css' %}" >
+ 
+  
+  <!--load all styles -->
+  <title>Instagram</title>
+
+
+</head>
+
+<body>
+
+        <!--Navigation Bar-->
+            <nav class="navigation">
+                <div class="navigation__column">
+                    <a href="{% url 'home_feed' %}">
+                        <img src="{% static 'core/images/logo.png' %}" />
+                    </a>
+                </div>
+                
+                <div class="navigation__column">
+                    <form action="{% url 'all_profiles_view' %}" method="GET">                       
+                    <i class="fa fa-search"></i>
+                    <input type="text" placeholder="Search" name="search_query">
+                </form>
+                </div>
+                <div class="navigation__column">
+                    <ul class="navigations__links">
+                        
+                        <li class="navigation__list-item">
+                            <a href="{% url 'home_feed' %}" class="navigation__link">
+                                <i class="fa fa-home fa-lg"></i>
+                            </a>
+                        </li>
+                       
+                        <li class="navigation__list-item">
+                            <a href="{% url 'explore_posts_view' %}" class="navigation__link">
+                                <i class="far fa-compass fa-lg" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="navigation__list-item">
+                            <a href="{% url 'liked_posts_view' %}" class="navigation__link">
+                                <i class="far fa-heart fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="navigation__list-item">
+                            <a href="" class="navigation__link">
+                               <i class="far fa-envelope fa-lg" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                       
+
+                        <li class="navigation__list-item">
+                            <form action="{% url 'log_out' %}" method="post">
+                                {% csrf_token %}
+                            <button type="submit"> Logout</button>
+                            </form>
+                        </li>
+                        <li class="navigation__list-item " >
+                            <div class="navigation__link corner-avatar" >
+                                {% if request.user.picture %}
+                                    <img src="{{request.user.picture.url}}"  />
+                                    {% else %}
+                                    <img src="{% static 'core/images/user.jpg' %}" />
+                                {% endif %}
+                            </div>
+                        </li>
+  
+                        
+                    </ul>
+                </div>
+
+
+                <div class="settings-menu">
+                    <!--Settings menu-->
+                    <div class="dark-btn" >
+                        <span></span>
+                    </div>
+
+                    <div class="settings-menu-inner">
+                        <div class="settings-avatar">
+                   
+                            {% if request.user.picture %}
+                                <img src="/media/{{request.user.picture}}" class="explore__avatar"/></a>
+                            {% else %}
+                            <img src="{% static 'core/images/user.jpg' %}" class="explore__avatar"/></a>
+                            {% endif %}
+                                {{request.user.username}}  
+                                
+                           <hr>
+                            <div class="settings-profile">
+                                <i class="far fa-address-book fa-lg"></i> <a href="{% url 'profile_view' request.user.username %}">Profile</a>
+                            </div>
+                            <hr>
+                            <div class="settings-profile">
+                                <i class="fa fa-edit fa-lg"></i> <a href="{% url 'profile_edit_view' request.user.username %}">Edit Profile</a>
+                            </div>
+                            <hr>
+                            <div class="settings-profile">
+                                <i class='fas fa-sign-out-alt fa-lg'></i>  <a href="">Logout</a>
+                            </div>
+                      
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+{% block content %}
+{% endblock content %}
+
+
+
+<footer class="footer">
+  <div class="footer__column">
+      <nav class="footer__nav">
+          <ul class="footer__list">
+              <li class="footer__list-item"><a href="/feed" class="footer__link">About Us</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Support</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Blog</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Press</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Api</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Jobs</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Privacy</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Terms</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Directory</a></li>
+              <li class="footer__list-item"><a href="/feed" class="footer__link">Language</a></li>
+          </ul>
+      </nav>
+  </div>
+  <div class="footer__column">
+      <span class="footer__copyright">© 2022 India</span>
+  </div>
+</footer>
+ 
+<!-- core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'core/js/all.min.js' %}"></script>  <!--fontawesome-->
+<script src="{% static 'core/js/jquery.js' %}"></script>
+<script src="{% static 'core/js/feed_ajax.js' %}"></script>
+<script src="{% static 'core/js/profile_ajax.js' %}"></script>
+<script src="{% static 'core/js/core.js' %}"></script>
+
+
+</body>
+
+</html>
+
