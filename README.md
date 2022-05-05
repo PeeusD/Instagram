@@ -34,7 +34,7 @@ Install dependencies by running this command:
 ## Samples:
 
 ![alt text](https://github.com/PeeusD/Instagram/blob/main/capture_img/Capture1.PNG) <br>
-![alt text](https://github.com/PeeusD/Instagram/blob/main/capture_img/Capture0.PNG) <br>
+![alt text](https://github.com/PeeusD/Instagram/blob/main/capture_img/Capture0.png) <br>
 ![alt text](https://github.com/PeeusD/Instagram/blob/main/capture_img/Capture2.PNG) <br>
 ![alt text](https://github.com/PeeusD/Instagram/blob/main/capture_img/Capture3.PNG) <br>
 ![alt text](https://github.com/PeeusD/Instagram/blob/main/capture_img/Capture4.PNG) <br>
