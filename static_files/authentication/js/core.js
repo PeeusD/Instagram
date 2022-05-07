@@ -1,34 +1,22 @@
-var i = 0; 			// Start Point
-var images = [];	// Images Array
-var time = 3000;	// Time Between Switch
-	 
-// Image List
-images[0] = "/static/authentication/img/reel1.png";
-images[1] = "/static/authentication/img/reel2.png";
-images[2] = "/static/authentication/img/reel3.png";
-images[3] = "/static/authentication/img/reel4.png";
-images[4] = "/static/authentication/img/reel5.png";
-images[5] = "/static/authentication/img/reel6.png";
+let slideIndex = 0;
 
-// Change Image
-function changeImg(){
-	document.slide.src = images[i];
 
-	// Check If Index Is Under Max
-	if(i < images.length - 1){
-	  // Add 1 to Index
-	  i++; 
-	} else { 
-		// Reset Back To O
-		i = 0;
-	}
-
-	// Run function every x seconds
-	setTimeout("changeImg()", time);
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+ 
+  slides[slideIndex-1].style.display = "block";  
+  setTimeout(showSlides, 3000); // Change image every 3 seconds
 }
 
 // Run function when page loads
-window.onload=changeImg;
+window.onload=showSlides;
 
 
 $(document).ready(function() {

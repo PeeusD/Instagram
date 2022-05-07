@@ -10,9 +10,31 @@ body{
   display: flex;
   justify-content: space-around;
 }
-
+.mySlides {
+  display: none;
+ 
+  }
+  .mySlides > img{
+    width: 31%;
+  }
+  .slideshow-container {
+    max-width: 1000px;
+    position: absolute;
+    top: 10%;
+    left: 31%;
+  }
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
 #login .login__column {
   width: 45%;
+  z-index: 1;
 }
 
 .login__column .login__phone {
@@ -157,11 +179,11 @@ body{
 
 }
 .login__box .google-img{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 10%;
+  margin-right: 10%;
   margin-top: 50px;
-  width: 50%;
+  margin-bottom: 20px;
+  width: 40%;
 }
 #login .login__divider:before {
   content: "";

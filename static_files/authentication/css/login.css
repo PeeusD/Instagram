@@ -3,6 +3,7 @@
   padding: 0;
   background-color: var(--background-color);
 }
+
 #login {
   width: 100%;
   max-width: 800px;
