@@ -37,4 +37,23 @@ $(document).ready(function() {
 		localStorage.setItem("theme", "light");
 	}
 
+
+	//Enable / Disbale login button when typing on text box
+
+	$("#password_txtbox").keyup(function () {
+		//Reference the Button.
+		var btnLogin = $("#btnLogin");
+
+		//Verify the TextBox value.
+		if ($(this).val().trim() != "") {
+			//Enable the TextBox when TextBox has value.
+			btnLogin.removeAttr("status");
+		} else {
+			//Disable the TextBox when TextBox is empty.
+			btnLogin.attr("status", "disabled");
+		}
+	});
+
+
+
 });
